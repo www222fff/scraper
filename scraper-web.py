@@ -81,27 +81,23 @@ def submit_link(driver, url):
             driver, 10).until(
             EC.element_to_be_clickable(
                 (By.XPATH, "//button[.//span[text()='Submit']]")))
+
+        print("Button display status:", button.is_displayed())
+        print("Button enable status:", button.is_enabled())
+        driver.execute_script("arguments[0].click();", button)
+
+        # Check result
+        notification = WebDriverWait(
+            driver,
+            20).until(
+            EC.visibility_of_element_located(
+                (By.XPATH,
+                 "//div/p[contains(text(), 'Your attendance to the session is confirmed')]")))
+        print("Notification text:", notification.text)
+
     except Exception as e:
-        print("Submit already.")
+        print("Submit already or with failre.")
         return
-
-    print("Button display status:", button.is_displayed())
-    print("Button enable status:", button.is_enabled())
-    driver.execute_script("arguments[0].click();", button)
-
-    # Check result
-    notification = WebDriverWait(
-        driver,
-        10).until(
-        EC.visibility_of_element_located(
-            (By.XPATH,
-             "//div/p[contains(text(), 'Your attendance to the session is confirmed')]")))
-    print("Notification text:", notification.text)
-
-    if button.is_displayed() and button.is_enabled():
-        print("The button is still clickable.")
-    else:
-        print("The button is not clickable.")
 
 
 def main():
@@ -118,6 +114,7 @@ def main():
     finally:
         if driver:
             driver.quit()
+
 
 if __name__ == "__main__":
     main()
