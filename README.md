@@ -8,4 +8,10 @@ wget https://dl.google.com/linux/deb/pool/main/g/google-chrome-stable/google-chr
 
 sudo apt install ./google-chrome-stable_126.0.6478.182-1_amd64.deb
 
+Note:
 
+Do not run with proxy, as below error will be triggered if export proxy when init driver = webdriver.Chrome(service=service, options=options)
+
+504 DNS look up failed
+
+The proxy server reported that an error occurred while trying to access the website.  Please click
