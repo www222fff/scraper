@@ -3,8 +3,11 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.service import Service
-import time
+import time, os
 import csv
+
+username = os.getenv('EMAIL_ADDRESS')
+password = os.getenv('EMAIL_PASSWORD')
 
 # Path to your Chromedriver
 chromedriver_path = './chromedriver'
@@ -41,7 +44,6 @@ def login(driver):
         EC.visibility_of_element_located((By.NAME, "loginfmt"))
     )
     driver.execute_script("arguments[0].scrollIntoView(true);", username_input)
-    username = input("Please enter your email: ")
     username_input.send_keys(username)
 
     next_button = driver.find_element(By.ID, "idSIButton9")
@@ -51,7 +53,6 @@ def login(driver):
         EC.visibility_of_element_located((By.NAME, "passwd"))
     )
     driver.execute_script("arguments[0].scrollIntoView(true);", password_input)
-    password = input("Please enter your password: ")
     password_input.send_keys(password)
 
     submit_button = WebDriverWait(driver, 30).until(

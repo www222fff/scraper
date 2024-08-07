@@ -26,7 +26,7 @@ unique_links = set()
 
 # Fetch emails from the inbox and search for links
 try:
-    for item in account.inbox.filter().order_by('-datetime_received')[:10000]:
+    for item in account.inbox.filter().order_by('-datetime_received')[:1000]:
         subject = item.subject
         sender = item.sender.email_address
         body = item.body
