@@ -10,8 +10,6 @@ sudo apt install ./google-chrome-stable_126.0.6478.182-1_amd64.deb
 
 Note:
 
-Do not run with proxy, as below error will be triggered if export proxy when init driver = webdriver.Chrome(service=service, options=options)
+Do not run with proxy env variable setting, as below error will be triggered when init driver = webdriver.Chrome(service=service, options=options)
 
-504 DNS look up failed
-
-The proxy server reported that an error occurred while trying to access the website.  Please click
+"504 DNS look up failed" and "The proxy server reported that an error occurred while trying to access the website."
